@@ -9,10 +9,16 @@ def get_files(filetype:str):
 
 
 def show_yaml(file_name:str):
+    
     with open(file_name,'r') as yml_file:
-        yml_content=yaml.load(yml_file,Loader=yaml.FullLoader)
-        print('\nYAML Content\t:')
-        print(yaml.dump(yml_content,default_flow_style=False))
+        try:
+            yml_content=yaml.safe_load(yml_file)
+            print('\nYAML Content\t:')
+            # print(yaml.dump(yml_content,default_flow_style=False))
+            print(yml_content)
+        except yaml.YAMLError as e:
+            print(e)
+
 def main(filename:str):
     print(filename)
 
